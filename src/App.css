@@ -50,9 +50,9 @@ body {
 }
 
 .flex-section {
-    /* flex-grow: 1; */
-    /* display: flex; */
-    /* min-height: 0; */
+    flex-grow: 1;
+    display: flex;
+    min-height: 0;
     flex-direction: column;
 }
 
@@ -64,4 +64,8 @@ body {
 
 .flex-no-shrink {
     flex-shrink: 0;
+}
+
+.menu {
+    position: fixed;
 }
