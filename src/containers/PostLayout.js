@@ -12,9 +12,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import ShareMenu from "../components/ShareMenu";
+import PostMenu from "../components/PostMenu";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -55,7 +55,7 @@ export default function RecipeReviewCard(props) {
         }
         action={
           <IconButton aria-label="settings">
-            <MoreVertIcon />
+            <PostMenu />
           </IconButton>
         }
         title={props.location}
@@ -76,7 +76,7 @@ export default function RecipeReviewCard(props) {
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
-          <ShareIcon />
+          <ShareMenu />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
