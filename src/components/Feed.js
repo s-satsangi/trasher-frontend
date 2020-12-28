@@ -7,14 +7,14 @@ export default function Feed(props) {
     <InfiniteScroll
       pageStart={0}
       loadMore={props.getData}
-      hasMore={true || false}
+      hasMore={props.hasMore}
       loader={
         <div className="loader" key={0}>
           Loading ...
         </div>
       }
     >
-      {props.data}
+      {props.data ? props.data : <div></div>}
     </InfiniteScroll>
   );
 }

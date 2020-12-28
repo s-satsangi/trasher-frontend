@@ -5,6 +5,8 @@ import PostLayout from "./PostLayout";
 
 export default function PostsContainer(props) {
   const [posts, setPosts] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [nextHref, setNextHref] = useState(null);
 
   useEffect(() => {
     setPosts(getPosts());
@@ -14,7 +16,7 @@ export default function PostsContainer(props) {
     let postsRequest;
     const postsLength = posts ? posts.length : 0;
     fetch(
-      `http://localhost:3000/posts/${postsLength}`,
+      `http://localhost:3000/posts/index/${postsLength}`,
       {
         // client_id: api.client_id,
         linked_partitioning: 1,
@@ -24,11 +26,17 @@ export default function PostsContainer(props) {
         cache: true,
       }
     )
-      .then((data) => data.json())
+      .then((data) => {
+        return data.json();
+      })
       .then((json) => {
         postsRequest = json.map((post) => {
           return (
             <PostLayout
+              likes={post.likes}
+              comments={post.comments}
+              postId={post.id}
+              user={post.user_id}
               key={post.id}
               image={post.image}
               location={post.locaiton}
@@ -37,8 +45,9 @@ export default function PostsContainer(props) {
             />
           );
         });
-        setPosts(postsRequest);
+        const currentPosts = posts ? posts.slice() : [];
+        setPosts([...currentPosts, ...postsRequest]);
       });
   };
-  return <Feed data={posts} getData={getPosts} />;
+  return <Feed data={posts} getData={getPosts} hasMore={hasMore} />;
 }

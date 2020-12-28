@@ -24,13 +24,13 @@ export default function Columns(props) {
     <div className={classes.root}>
       <Grid container spacing={2} direction="column">
         <Grid item xs={12} container className="menu"></Grid>
-        <Grid xs={12} container>
-          <Grid xs={1}></Grid>
-          <Grid xs={1} className="menu-position menu">
+        <Grid xs={12} item container>
+          <Grid xs={1} item></Grid>
+          <Grid xs={1} item className="menu-position menu">
             <SideMenu />
           </Grid>
-          <Grid xs={1} />
-          <Grid container xs={7}>
+          <Grid xs={1} item />
+          <Grid container item xs={7}>
             <Grid container className="flex-section">
               {props.renderCenter ? props.renderCenter : <PostsContainer />}
             </Grid>
