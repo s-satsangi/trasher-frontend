@@ -2,8 +2,9 @@ import React from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ShareIcon from "@material-ui/icons/Share";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-export default function SimpleMenu() {
+export default function SimpleMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -12,6 +13,11 @@ export default function SimpleMenu() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleCopyLink = () => {
+    alert("Copied to clipboard!");
+    handleClose();
   };
 
   return (
@@ -30,7 +36,9 @@ export default function SimpleMenu() {
       >
         <MenuItem onClick={handleClose}>Share to Facebook</MenuItem>
         <MenuItem onClick={handleClose}>Share to Instagram</MenuItem>
-        <MenuItem onClick={handleClose}>Copy Link</MenuItem>
+        <CopyToClipboard text={`localhost:3000/posts/${props.postId}`}>
+          <MenuItem onClick={handleCopyLink}>Copy Link</MenuItem>
+        </CopyToClipboard>
       </Menu>
     </div>
   );

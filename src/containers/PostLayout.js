@@ -15,6 +15,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ShareMenu from "../components/ShareMenu";
 import PostMenu from "../components/PostMenu";
+import Comments from "./Comments";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -40,12 +41,9 @@ const useStyles = makeStyles((theme) => ({
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
-  function commentMapper() {
-    return props.comments.map((comment) => (
-      <div key={comment.text}>{comment.text}</div>
-    ));
-  }
+  const [liked, setLiked] = React.useState(
+    props.likes.find((like) => like.user_id === 41) ? "red" : null
+  );
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -65,8 +63,9 @@ export default function RecipeReviewCard(props) {
   }
 
   function likePostHandler() {
+    setLiked("red");
     const data = {
-      user_id: props.user,
+      user_id: 41,
       upvote_id: props.postId,
       upvote_type: "Post",
     };
@@ -76,10 +75,10 @@ export default function RecipeReviewCard(props) {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((json) => console.log(json));
+      .then((json) => {
+        if (!json.id) setLiked(null);
+      });
   }
-
-  const liked = props.likes.find((like) => like.user_id === 42) ? "red" : null;
 
   return (
     <Card className={classes.root}>
@@ -91,7 +90,7 @@ export default function RecipeReviewCard(props) {
         }
         action={
           <IconButton aria-label="settings">
-            <PostMenu user={props.user} />
+            <PostMenu user={props.user} postId={props.postId} />
           </IconButton>
         }
         title={props.location}
@@ -112,7 +111,7 @@ export default function RecipeReviewCard(props) {
           <FavoriteIcon style={{ color: liked }} />
         </IconButton>
         <IconButton aria-label="share">
-          <ShareMenu />
+          <ShareMenu postId={props.postId} />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -126,10 +125,7 @@ export default function RecipeReviewCard(props) {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        {/* <CardContent>Comments</CardContent> */}
-        {/* #make comment form */}
-        <input></input>
-        {commentMapper()}
+        <Comments comments={props.comments} />
       </Collapse>
     </Card>
   );
