@@ -12,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ModeCommentIcon from "@material-ui/icons/ModeComment";
 import ShareMenu from "../components/ShareMenu";
 import PostMenu from "../components/PostMenu";
 import Comments from "./Comments";
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard(props) {
+export default function PostLayout(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [liked, setLiked] = React.useState(
@@ -84,9 +84,10 @@ export default function RecipeReviewCard(props) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
+          <Avatar
+            alt="Remy Sharp"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwLxFg4DRi0YW-8Vl-foPkVYZDQrVkszRm8g&usqp=CAU"
+          />
         }
         action={
           <IconButton aria-label="settings">
@@ -121,11 +122,11 @@ export default function RecipeReviewCard(props) {
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ExpandMoreIcon />
+          <ModeCommentIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <Comments comments={props.comments} />
+        <Comments comments={props.comments} postId={props.postId} />
       </Collapse>
     </Card>
   );

@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Columns(props) {
   const classes = useStyles();
-  let arr = ["Notifications", "Settings", "Likes", "Som other shit", 5];
-  arr = arr.map((num) => <Paper className={classes.paper}>{num}</Paper>);
   return (
     <div className={classes.root}>
       <Grid container spacing={2} direction="column">
