@@ -68,7 +68,7 @@ body {
 
 .menu {
     position: fixed;
-    top: 8vh;
+    top: 30vh;
 }
 
 .menu-position {
@@ -79,4 +79,9 @@ body {
 #comment-button {
     color: grey;
     cursor: pointer;
+}
+
+.userform {
+    display: "flex";
+    align-items: center;
 }

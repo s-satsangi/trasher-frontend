@@ -5,6 +5,7 @@ import PostForm from "./components/PostForm";
 import { Container } from "@material-ui/core";
 import Login from "./components/login";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import UserForm from "./containers/UserForm";
 
 function App() {
   function logout() {
@@ -22,13 +23,13 @@ function App() {
       <Login />
       <Router>
         <div>
+          <Link to="/newuser">Create User</Link>
+        </div>
+        <div>
           <Link to="/home">Text</Link>
         </div>
         <div>
           <button onClick={logout}>logout</button>
-        </div>
-        <div>
-          <Link to="/another">Another Link</Link>
         </div>
         <div>
           <Link to="/New_Post">New Post</Link>
@@ -39,6 +40,9 @@ function App() {
         <Switch>
           <Route path="/home">
             <Columns />
+          </Route>
+          <Route path="/newuser">
+            <Columns renderCenter={<UserForm />} />
           </Route>
           <Route path="/notifications">
             <Columns renderCenter={"/notifications"} />
