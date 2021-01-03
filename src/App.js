@@ -1,19 +1,15 @@
 import "./App.css";
 import Columns from "./containers/Columns";
 
-<<<<<<< HEAD
-import { Container } from "@material-ui/core";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PostForm from "./components/PostForm";
-=======
-import { Container, Grid } from "@material-ui/core";
-import Login from "./components/login"
->>>>>>> 1bb5e9bc849c5cf9723f524baafd5a3ee2a49805
+import { Container } from "@material-ui/core";
+import Login from "./components/login";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <Container>
-<<<<<<< HEAD
+      <Login />
       <Router>
         <div>
           <Link to="/home">Text</Link>
@@ -39,10 +35,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-=======
-      <Columns />
-      <Login />
->>>>>>> 1bb5e9bc849c5cf9723f524baafd5a3ee2a49805
     </Container>
   );
 }
