@@ -7,8 +7,8 @@ import Login from "./components/login"
 function App() {
   return (
     <Container>
-      <Columns />
       <Login />
+      {/* <Columns /> */}
     </Container>
   );
 }

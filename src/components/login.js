@@ -9,12 +9,12 @@ export default function Login() {
     console.log("setFetch");
     fetch("http://localhost:3000/login", {
       method: "POST",
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Credentials": true,
+          'Access-Control-Allow-Credentials': 'true',
+          "Content-Type": "application/json",
+          Accept: "application/json",
       },
-      credentials: "include",
       body: JSON.stringify({
         user: {
           username,
@@ -23,7 +23,8 @@ export default function Login() {
       }),
     })
       .then((resp) => resp.json())
-      .then((user) => console.log("Fuck you humans"));
+      .catch(console.log)
+      .then((user) => console.log(user));
   };
 
   return (

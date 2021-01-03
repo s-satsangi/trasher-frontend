@@ -27,7 +27,8 @@ export default function CenteredGrid() {
     let postsRequest;
     const postsLength = posts ? posts.length : 0;
     fetch(
-      `http://localhost:3000/posts/${postsLength}`,
+      // /${postsLength}
+      `http://localhost:3000/posts`,
       {
         // client_id: api.client_id,
         linked_partitioning: 1,
