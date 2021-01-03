@@ -19,6 +19,9 @@ export default function PostsContainer(props) {
       `http://localhost:3000/posts/index/${postsLength}`,
       {
         credentials: "include",
+        // headers: {
+        //   'Authorization':true
+        // }
       },
       {
         // client_id: api.client_id,
@@ -31,6 +34,9 @@ export default function PostsContainer(props) {
     )
       .then((data) => {
         return data.json();
+      })
+      .catch(err=>{console.log(err)
+      throw(`${err}`)
       })
       .then((json) => {
         postsRequest = json.map((post) => {

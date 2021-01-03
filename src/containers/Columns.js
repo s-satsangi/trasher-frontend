@@ -27,7 +27,7 @@ export default function Columns(props) {
         <Grid xs={12} item container>
           <Grid xs={1} item></Grid>
           <Grid xs={1} item className="menu-position menu">
-            <SideMenu />
+            {/* <SideMenu /> */}
           </Grid>
           <Grid xs={1} item />
           <Grid container item xs={7}>
