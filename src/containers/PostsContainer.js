@@ -18,6 +18,9 @@ export default function PostsContainer(props) {
     fetch(
       `http://localhost:3000/posts/index/${postsLength}`,
       {
+        credentials: "include",
+      },
+      {
         // client_id: api.client_id,
         linked_partitioning: 1,
         page_size: 10,

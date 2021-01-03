@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
   return (
     <Container>
+      <h1>Litter-Ally</h1>
       <Login />
       <Router>
         <div>
