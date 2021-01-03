@@ -39,6 +39,7 @@ export default function PostsContainer(props) {
       throw(`${err}`)
       })
       .then((json) => {
+        console.log(json);
         postsRequest = json.map((post) => {
           return (
             <PostLayout

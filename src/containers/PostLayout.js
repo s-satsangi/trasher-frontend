@@ -12,9 +12,10 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ModeCommentIcon from "@material-ui/icons/ModeComment";
 import ShareMenu from "../components/ShareMenu";
 import PostMenu from "../components/PostMenu";
+import Comments from "./Comments";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -37,15 +38,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard(props) {
+export default function PostLayout(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
-  function commentMapper() {
-    return props.comments.map((comment) => (
-      <div key={comment.text}>{comment.text}</div>
-    ));
-  }
+  const [liked, setLiked] = React.useState(
+    props.likes.find((like) => like.user_id === 41) ? "red" : null
+  );
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -65,8 +63,9 @@ export default function RecipeReviewCard(props) {
   }
 
   function likePostHandler() {
+    setLiked("red");
     const data = {
-      user_id: props.user,
+      user_id: 41,
       upvote_id: props.postId,
       upvote_type: "Post",
     };
@@ -76,22 +75,23 @@ export default function RecipeReviewCard(props) {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((json) => console.log(json));
+      .then((json) => {
+        if (!json.id) setLiked(null);
+      });
   }
-
-  const liked = props.likes.find((like) => like.user_id === 42) ? "red" : null;
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
+          <Avatar
+            alt="Remy Sharp"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwLxFg4DRi0YW-8Vl-foPkVYZDQrVkszRm8g&usqp=CAU"
+          />
         }
         action={
           <IconButton aria-label="settings">
-            <PostMenu user={props.user} />
+            <PostMenu user={props.user} postId={props.postId} />
           </IconButton>
         }
         title={props.location}
@@ -112,7 +112,7 @@ export default function RecipeReviewCard(props) {
           <FavoriteIcon style={{ color: liked }} />
         </IconButton>
         <IconButton aria-label="share">
-          <ShareMenu />
+          <ShareMenu postId={props.postId} />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -122,14 +122,11 @@ export default function RecipeReviewCard(props) {
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ExpandMoreIcon />
+          <ModeCommentIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        {/* <CardContent>Comments</CardContent> */}
-        {/* #make comment form */}
-        <input></input>
-        {commentMapper()}
+        <Comments comments={props.comments} postId={props.postId} />
       </Collapse>
     </Card>
   );

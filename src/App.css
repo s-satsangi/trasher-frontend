@@ -75,3 +75,8 @@ body {
     display: flex;
     justify-content: center;
 }
+
+#comment-button {
+    color: grey;
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Columns from "../containers/Columns";
 import PostForm from "./PostForm";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 export default function SimpleMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -20,6 +21,13 @@ export default function SimpleMenu(props) {
     <Columns renderCenter={<PostForm />} />;
     handleClose();
   };
+
+  const handleCopyLink = () => {
+    alert("Copied to clipboard!");
+    handleClose();
+  };
+
+  const handleDelete = () => {};
 
   return (
     <div>
@@ -43,7 +51,9 @@ export default function SimpleMenu(props) {
         {props.user === 41 ? (
           <MenuItem onClick={handleClose}>Delete</MenuItem>
         ) : null}
-        <MenuItem onClick={handleClose}>Copy Link</MenuItem>
+        <CopyToClipboard text={`localhost:3000/posts/${props.postId}`}>
+          <MenuItem onClick={handleCopyLink}>Copy Link</MenuItem>
+        </CopyToClipboard>
       </Menu>
     </div>
   );
