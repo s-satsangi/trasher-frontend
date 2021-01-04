@@ -36,11 +36,14 @@ export default function PostsContainer(props) {
         return data.json();
       })
       .catch(err=>{console.log(err)
-      throw(`${err}`)
+      if(err){throw(`${err}`)}
       })
       .then((json) => {
         console.log(json);
-        postsRequest = json.map((post) => {
+        
+        if (json) console.log(json);
+          
+          postsRequest = json.map((post) => {
           return (
             <PostLayout
               likes={post.likes}
@@ -57,7 +60,8 @@ export default function PostsContainer(props) {
         });
         const currentPosts = posts ? posts.slice() : [];
         setPosts([...currentPosts, ...postsRequest]);
-      });
+      }
+      );
   };
   return <Feed data={posts} getData={getPosts} hasMore={hasMore} />;
 }

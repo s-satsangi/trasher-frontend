@@ -66,7 +66,7 @@ export default class UserForm extends Component {
             required
             label="Last Name"
             className="userform"
-            onChange={this.passwordHandler}
+            onChange={(event) => this.inputHandler(event, "lastname")}
           />
           <br />
           <br />
