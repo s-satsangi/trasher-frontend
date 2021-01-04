@@ -43,7 +43,6 @@ export default class UserForm extends Component {
   };
 
   passwordHandler = (event) => {
-    console.log(event);
     this.setState({ passwordConfirm: event.target.value });
     this.state.password === event.target.value
       ? this.setState({ submit: true })
@@ -66,7 +65,7 @@ export default class UserForm extends Component {
             required
             label="Last Name"
             className="userform"
-            onChange={this.passwordHandler}
+            onChange={(event) => this.inputHandler(event, "lastname")}
           />
           <br />
           <br />

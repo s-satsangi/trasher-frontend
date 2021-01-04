@@ -35,8 +35,8 @@ export default function PostsContainer(props) {
       .then((data) => {
         return data.json();
       })
-      .catch(err=>{console.log(err)
-      throw(`${err}`)
+      .catch((err) => {
+        throw `${err}`;
       })
       .then((json) => {
         console.log(json);
