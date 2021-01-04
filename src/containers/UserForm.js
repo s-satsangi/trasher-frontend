@@ -7,6 +7,8 @@ export default class UserForm extends Component {
     lastname: "",
     username: "",
     password: "",
+    passwordConfirm: "",
+    submit: false,
   };
 
   createUser = (event) => {
@@ -35,18 +37,20 @@ export default class UserForm extends Component {
   };
 
   inputHandler = (event, keyname) => {
-    console.log(event.target.value);
     this.setState({
       [keyname]: event.target.value,
     });
   };
 
-  passwordConfirm = (event) => {
-    return event.target.value === this.state.password;
+  passwordHandler = (event) => {
+    console.log(event);
+    this.setState({ passwordConfirm: event.target.value });
+    this.state.password === event.target.value
+      ? this.setState({ submit: true })
+      : this.setState({ submit: false });
   };
 
   render() {
-    const passwordError = () => (this.passwordConfirm() ? "error" : null);
     return (
       <Container>
         <form onSubmit={this.createUser}>
@@ -62,7 +66,7 @@ export default class UserForm extends Component {
             required
             label="Last Name"
             className="userform"
-            onChange={(event) => this.inputHandler(event, "lastname")}
+            onChange={this.passwordHandler}
           />
           <br />
           <br />
@@ -88,11 +92,15 @@ export default class UserForm extends Component {
             label="Confirm Password"
             className="userform"
             type="password"
-            onChange={(event) => this.passwordConfirm(event)}
+            onChange={(event) => this.passwordHandler(event)}
           />
           <br />
           <br />
-          <TextField type="submit" />
+          {this.state.submit ? (
+            <TextField type="submit" />
+          ) : (
+            <TextField type="submit" disabled />
+          )}
         </form>
       </Container>
     );
