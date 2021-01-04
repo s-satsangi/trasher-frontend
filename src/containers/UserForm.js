@@ -12,19 +12,26 @@ export default class UserForm extends Component {
   createUser = (event) => {
     event.preventDefault();
     const data = {
-      first_name: firstname,
-      last_name: lastname,
-      username: username,
-      password: password,
+      user: {
+        first_name: this.state.firstname,
+        last_name: this.state.lastname,
+        username: this.state.username,
+        password: this.state.password,
+      },
     };
-    fetch("localhost:3000/users", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((json) => console.log(json));
+      .then((json) => {
+        if (json.status) throw json;
+        alert("change to redirect later");
+      })
+      .catch((err) => alert(`${err.message}`));
+    event.target.reset();
   };
 
   inputHandler = (event, keyname) => {
@@ -44,6 +51,7 @@ export default class UserForm extends Component {
       <Container>
         <form onSubmit={this.createUser}>
           <TextField
+            required
             label="First Name"
             className="userform"
             onChange={(event) => this.inputHandler(event, "firstname")}
@@ -51,6 +59,7 @@ export default class UserForm extends Component {
           <br />
           <br />
           <TextField
+            required
             label="Last Name"
             className="userform"
             onChange={(event) => this.inputHandler(event, "lastname")}
@@ -58,6 +67,7 @@ export default class UserForm extends Component {
           <br />
           <br />
           <TextField
+            required
             label="Username"
             className="userform"
             onChange={(event) => this.inputHandler(event, "username")}
@@ -65,6 +75,7 @@ export default class UserForm extends Component {
           <br />
           <br />
           <TextField
+            required
             label="Password"
             className="userform"
             type="password"
@@ -73,6 +84,7 @@ export default class UserForm extends Component {
           <br />
           <br />
           <TextField
+            required
             label="Confirm Password"
             className="userform"
             type="password"
