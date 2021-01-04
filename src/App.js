@@ -48,7 +48,7 @@ function App() {
             <Columns renderCenter={"/notifications"} />
           </Route>
           <Route path="/New_Post">
-            <PostForm />
+            <Columns renderCenter={ <PostForm /> } />
           </Route>
         </Switch>
       </Router>
