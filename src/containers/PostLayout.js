@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "56.25%",
+    objectFit: "contain",
+    margin: "0 auto",
+    backgroundSize: "contain",
   },
   expand: {
     transform: "rotate(0deg)",
@@ -100,7 +103,7 @@ export default function PostLayout(props) {
       <CardMedia
         className={classes.media}
         image={props.image}
-        title="Paella dish"
+        title={props.location}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">

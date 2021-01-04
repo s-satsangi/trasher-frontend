@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Container, TextField } from "@material-ui/core";
+import PostLayout from "../containers/PostLayout";
 
 export default class PostForm extends Component {
   state = {
     text: "",
-    image: "",
+    image: null,
     location: "",
   };
 
@@ -30,6 +31,7 @@ export default class PostForm extends Component {
       })
       .catch((err) => alert(`${err.message}`));
     event.target.reset();
+    <Redirect to="/home" />;
   };
 
   inputHandler = (event, keyname) => {
@@ -42,29 +44,31 @@ export default class PostForm extends Component {
     //a post has a :text, :image, :location
     return (
       <Container>
+        <img src={this.state.image} />
         <form onSubmit={this.createPost}>
-        <TextField 
-          required
-          label = "Text"
-          className = "postform"
-          onChange = {(event) => this.inputHandler(event, "text")}
-        />
-        <br /> <br />
-        <TextField 
-          required
-          label = "Location"
-          className = "postform"
-          onChange = {(event) => this.inputHandler(event, "location")}
-        />
-        <br /> <br />
-        <TextField 
-          required
-          label = "Image"
-          className = "postform"
-          onChange = {(event) => this.inputHandler(event, "image")}
-        />
-        <br /><br />
-        <TextField type = "submit" />
+          <TextField
+            required
+            label="Text"
+            className="postform"
+            onChange={(event) => this.inputHandler(event, "text")}
+          />
+          <br /> <br />
+          <TextField
+            required
+            label="Location"
+            className="postform"
+            onChange={(event) => this.inputHandler(event, "location")}
+          />
+          <br /> <br />
+          <TextField
+            required
+            label="Image"
+            className="postform"
+            onChange={(event) => this.inputHandler(event, "image")}
+          />
+          <br />
+          <br />
+          <TextField type="submit" />
         </form>
       </Container>
     );
