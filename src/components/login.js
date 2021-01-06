@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TextField } from "@material-ui/core";
 
 export default function Login(props) {
   const [username, setusername] = useState("");
@@ -29,19 +30,21 @@ export default function Login(props) {
   return (
     <div>
       <form onSubmit={() => setFetch()}>
-        <input
+        <TextField
           type="text"
           placeholder="username"
           value={username}
           onChange={(e) => setusername(e.target.value)}
         />
-        <input
+        &nbsp;
+        <TextField
           type="password"
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input type="submit" />
+        &nbsp;
+        <TextField type="submit" />
       </form>
     </div>
   );
