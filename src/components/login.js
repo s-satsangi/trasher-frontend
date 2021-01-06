@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Login() {
+export default function Login(props) {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,7 +23,7 @@ export default function Login() {
       }),
     })
       .then((resp) => resp.json())
-      .then((user) => console.log("Fuck you humans"));
+      .then((user) => props.login(true));
   };
 
   return (
