@@ -11,9 +11,15 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import Map from "./MapsApi/Map"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const location = {
+    address: '1600 Amphitheatre Parkway, Mountain View, california.',
+    lat: 37.42216,
+    lng: -122.08427,
+  }
 
   function logout() {
     fetch(`http://localhost:3000/logout`, {
@@ -58,6 +64,7 @@ function App() {
           </Switch>
         </Router>
       ) : null}
+      <Map location={location} zoomLevel={10} />
     </Container>
   );
 }
