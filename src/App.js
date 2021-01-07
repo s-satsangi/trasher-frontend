@@ -17,6 +17,9 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     sessionStorage.getItem("loggedIn") === "true" ? true : false
   );
+  const [username, setUsername] = useState(sessionStorage.getItem("username"));
+  const [user_id, setUserId] = useState(sessionStorage.getItem("user_id"));
+
   const [path, setPath] = useState("");
 
   const location = {
@@ -31,12 +34,16 @@ function App() {
 
   return (
     <Container>
-      <h1>Litterally</h1>
+      <h1 className="logo">Litterally</h1>
       <Router>
         {loggedIn ? (
           <Redirect to="/home/feed" />
         ) : (
-          <Login login={setLoggedIn} />
+          <Login
+            login={setLoggedIn}
+            setUserId={setUserId}
+            setUsername={setUsername}
+          />
         )}
       </Router>
       {loggedIn ? (

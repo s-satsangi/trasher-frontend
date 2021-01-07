@@ -28,15 +28,18 @@ export default function Login(props) {
     })
       .then((resp) => {
         if (resp.status === 401) throw resp;
-        resp.json();
+        return resp.json();
       })
       .then((user) => {
+        console.log(user);
         props.login(true);
-        sessionStorage.setItem("loggedIn", "true");
+        props.setUsername(user.user);
+        props.setUserId(user.uid);
+        return;
       })
       .catch((err) => {
         setError(err.statusText);
-        setTimeout(() => setError(""), 5000);
+        // setTimeout(() => setError(""), 5000);
         return;
       });
   };

@@ -11,6 +11,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import DynamicFeedIcon from "@material-ui/icons/DynamicFeed";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import GitHubIcon from "@material-ui/icons/GitHub";
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,6 +55,8 @@ export default function SideMenu(props) {
       .catch((err) => console.log(err));
     if (typeof Storage !== undefined) {
       sessionStorage.setItem("loggedIn", "false");
+      sessionStorage.setItem("username", "");
+      sessionStorage.setItem("user_id", "");
       props.logIn(false);
     }
   }
@@ -87,15 +90,42 @@ export default function SideMenu(props) {
                 )}
               </ListItemIcon>
               {text !== "Logout" ? (
-                <Link to={`/home/${processMenuChoice(text)}`}> {text} </Link>
+                <Link
+                  className="sidemenu"
+                  to={`/home/${processMenuChoice(text)}`}
+                >
+                  {" "}
+                  {text}{" "}
+                </Link>
               ) : (
-                <Link to={`/home/${processMenuChoice(text)}`} onClick={logout}>
+                <Link
+                  className="sidemenu"
+                  to={`/home/${processMenuChoice(text)}`}
+                  onClick={logout}
+                >
                   {" "}
                   {text}{" "}
                 </Link>
               )}
             </ListItem>
           ))}
+          <ListItem>
+            <a href="https://github.com/jrshort89" target="_blank">
+              <ListItemIcon>
+                <GitHubIcon />
+              </ListItemIcon>
+              Jake's Github
+            </a>
+          </ListItem>
+
+          <ListItem>
+            <a href="https://github.com/s-satsangi" target="_blank">
+              <ListItemIcon>
+                <GitHubIcon />
+              </ListItemIcon>
+              Sharad's Github
+            </a>
+          </ListItem>
         </List>
 
         <Divider />

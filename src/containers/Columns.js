@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -20,6 +20,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Columns(props) {
   const classes = useStyles();
+  const [joke, setJoke] = useState("");
+
+  // useEffect(() => {
+  //   fetch("https://dad-jokes.p.rapidapi.com/random/joke", {
+  //     method: "GET",
+  //     headers: {
+  //       "x-rapidapi-key": "353b214e47mshb3d5a6a72a53090p187493jsnd3fe2d693d63",
+  //       "x-rapidapi-host": "dad-jokes.p.rapidapi.com",
+  //     },
+  //   })
+  //     .then((resp) => resp.json())
+  //     .catch((err) => console.log(err))
+  //     .then((pun) => setJoke(pun));
+  // }, []);
+
   let { path, url } = useRouteMatch();
 
   return (
@@ -46,7 +61,7 @@ export default function Columns(props) {
           </Grid>
           <Grid item xs={2}>
             <div className="menu">
-              <Paper className={classes.paper}>Another Menu</Paper>
+              {/* <Paper className={classes.paper}>{joke}</Paper> */}
             </div>
           </Grid>
         </Grid>
