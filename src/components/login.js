@@ -31,7 +31,6 @@ export default function Login(props) {
         return resp.json();
       })
       .then((user) => {
-        console.log(user);
         props.login(true);
         props.setUsername(user.user);
         props.setUserId(user.uid);
