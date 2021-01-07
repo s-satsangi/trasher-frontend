@@ -25,22 +25,15 @@ export default function Login(props) {
         },
       }),
     })
-<<<<<<< HEAD
       .then((resp) => {
         if (resp.status === 401) throw resp;
         resp.json();
       })
       .then((user) => {
         props.login(true);
-      })
-      .catch((err) => console.log);
-=======
-      .then((resp) => resp.json())
-      .then((user) => {
-        props.login(true);
         sessionStorage.setItem("loggedIn", "true");
-      });
->>>>>>> 8d4ea110299d3f9bf10a5b8cdbca363a89061285
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
