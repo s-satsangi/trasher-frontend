@@ -70,7 +70,6 @@ export default function Login(props) {
         &nbsp;
         <TextField type="submit" />
       </form>
-
       <UserForm />
     </div>
   );

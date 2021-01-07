@@ -109,25 +109,32 @@ export default function SideMenu(props) {
               )}
             </ListItem>
           ))}
-          <ListItem>
-            <a href="https://github.com/jrshort89" target="_blank">
+          <a
+            href="https://github.com/jrshort89"
+            target="_blank"
+            className="sidemenu"
+          >
+            <ListItem>
               <ListItemIcon>
                 <GitHubIcon />
               </ListItemIcon>
               Jake's Github
-            </a>
-          </ListItem>
+            </ListItem>
+          </a>
 
-          <ListItem>
-            <a href="https://github.com/s-satsangi" target="_blank">
+          <a
+            href="https://github.com/s-satsangi"
+            target="_blank"
+            className="sidemenu"
+          >
+            <ListItem>
               <ListItemIcon>
                 <GitHubIcon />
               </ListItemIcon>
               Sharad's Github
-            </a>
-          </ListItem>
+            </ListItem>
+          </a>
         </List>
-
         <Divider />
       </div>
     </div>

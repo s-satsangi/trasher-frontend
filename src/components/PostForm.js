@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Container, TextField } from "@material-ui/core";
 import PostLayout from "../containers/PostLayout";
+import { Redirect } from "react-router-dom";
 
 export default class PostForm extends Component {
   state = {
     text: "",
     image: null,
     location: "",
+    redirect: null,
   };
 
   createPost = (event) => {
@@ -31,7 +33,9 @@ export default class PostForm extends Component {
       })
       .catch((err) => alert(`${err.message}`));
     event.target.reset();
-    <Redirect to="/home" />;
+    this.setState({
+      redirect: <Redirect path="/home/feed" />,
+    });
   };
 
   inputHandler = (event, keyname) => {
@@ -44,6 +48,7 @@ export default class PostForm extends Component {
     //a post has a :text, :image, :location
     return (
       <Container>
+        {this.state.redirect}
         <img src={this.state.image} />
         <form onSubmit={this.createPost}>
           <TextField

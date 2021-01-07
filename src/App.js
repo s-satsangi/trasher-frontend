@@ -37,7 +37,7 @@ function App() {
       <h1 className="logo">Litterally</h1>
       <Router>
         {loggedIn ? (
-          <Redirect to="/home/feed" />
+          <Redirect to="/home" />
         ) : (
           <Login
             login={setLoggedIn}
@@ -45,17 +45,15 @@ function App() {
             setUsername={setUsername}
           />
         )}
-      </Router>
-      {loggedIn ? (
-        <Router>
+        {loggedIn ? (
           <Switch>
-            <Route path="/home/feed">
+            <Route path="/home">
               <Columns logIn={setLoggedIn} />
             </Route>
           </Switch>
-        </Router>
-      ) : null}
-      {/* <Map location={location} zoomLevel={10} /> */}
+        ) : null}
+        {/* <Map location={location} zoomLevel={10} /> */}
+      </Router>
     </Container>
   );
 }

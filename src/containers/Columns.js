@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import SideMenu from "../components/SideMenu";
 import PostsContainer from "./PostsContainer";
 import PostForm from "../components/PostForm";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Switch, Route, useRouteMatch, withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Columns(props) {
+function Columns(props) {
   const classes = useStyles();
   const [joke, setJoke] = useState("");
 
@@ -35,6 +35,8 @@ export default function Columns(props) {
   //     .then((pun) => setJoke(pun));
   // }, []);
 
+  useEffect(() => props.history.push("/home/feed"), []);
+
   let { path, url } = useRouteMatch();
 
   return (
@@ -50,11 +52,11 @@ export default function Columns(props) {
           <Grid container item xs={7}>
             <Grid container className="flex-section">
               <Switch>
-                <Route path={`/home/newpost`}>
-                  <PostForm />
-                </Route>
                 <Route path={`/home/feed`}>
                   <PostsContainer />
+                </Route>
+                <Route path={"/home/newpost"}>
+                  <PostForm />
                 </Route>
               </Switch>
             </Grid>
@@ -69,3 +71,5 @@ export default function Columns(props) {
     </div>
   );
 }
+
+export default withRouter(Columns);
