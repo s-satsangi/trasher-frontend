@@ -8,7 +8,16 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-
+import DynamicFeedIcon from "@material-ui/icons/DynamicFeed";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -33,9 +42,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SideMenu() {
+export default function SideMenu(props) {
   const classes = useStyles();
 
+  function logout() {
+    fetch(`http://localhost:3000/logout`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+    if (typeof Storage !== undefined) {
+      sessionStorage.setItem("loggedIn", "false");
+      props.logIn(false);
+    }
+  }
+  function processMenuChoice(text) {
+    //take all spaces out, then take string to lower case
+    return text.replace(/\s+/g, "").toLowerCase();
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -50,17 +75,29 @@ export default function SideMenu() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {["New Post", "Starred", "Send email", "Drafts"].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
+          {["Feed", "Logout", "New Post"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index === 0 ? (
+                  <DynamicFeedIcon />
+                ) : index === 1 ? (
+                  <ExitToAppIcon />
+                ) : (
+                  <PostAddIcon />
+                )}
+              </ListItemIcon>
+              {text !== "Logout" ? (
+                <Link to={`/home/${processMenuChoice(text)}`}> {text} </Link>
+              ) : (
+                <Link to={`/home/${processMenuChoice(text)}`} onClick={logout}>
+                  {" "}
+                  {text}{" "}
+                </Link>
+              )}
+            </ListItem>
+          ))}
         </List>
+
         <Divider />
       </div>
     </div>

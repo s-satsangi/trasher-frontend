@@ -24,7 +24,10 @@ export default function Login(props) {
       }),
     })
       .then((resp) => resp.json())
-      .then((user) => props.login(true));
+      .then((user) => {
+        props.login(true);
+        sessionStorage.setItem("loggedIn", "true");
+      });
   };
 
   return (

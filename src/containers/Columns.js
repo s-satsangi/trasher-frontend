@@ -4,6 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import SideMenu from "../components/SideMenu";
 import PostsContainer from "./PostsContainer";
+import PostForm from "../components/PostForm";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Columns(props) {
   const classes = useStyles();
+  let { path, url } = useRouteMatch();
+
   return (
     <div className={classes.root}>
       <Grid container spacing={2} direction="column">
@@ -25,12 +29,19 @@ export default function Columns(props) {
         <Grid xs={12} item container>
           <Grid xs={1} item></Grid>
           <Grid xs={1} item className="menu-position menu">
-            <SideMenu />
+            <SideMenu logIn={props.logIn} />
           </Grid>
           <Grid xs={1} item />
           <Grid container item xs={7}>
             <Grid container className="flex-section">
-              {props.renderCenter ? props.renderCenter : <PostsContainer />}
+              <Switch>
+                <Route path={`/home/newpost`}>
+                  <PostForm />
+                </Route>
+                <Route path={`/home/feed`}>
+                  <PostsContainer />
+                </Route>
+              </Switch>
             </Grid>
           </Grid>
           <Grid item xs={2}>
