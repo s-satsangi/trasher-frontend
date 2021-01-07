@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { TextField } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 
 export default function Login(props) {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("asdf");
 
   const setFetch = () => {
     event.preventDefault();
@@ -23,13 +25,20 @@ export default function Login(props) {
         },
       }),
     })
-      .then((resp) => resp.json())
-      .then((user) => props.login(true));
+      .then((resp) => {
+        if (resp.status === 401) throw resp;
+        resp.json();
+      })
+      .then((user) => {
+        props.login(true);
+      })
+      .catch((err) => console.log);
   };
 
   return (
     <div>
       <form onSubmit={() => setFetch()}>
+        {error ? <Alert>Generic</Alert> : null}
         <TextField
           type="text"
           placeholder="username"
