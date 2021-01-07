@@ -14,7 +14,9 @@ import {
 import Map from "./MapsApi/Map";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(
+    sessionStorage.getItem("loggedIn") === "true" ? true : false
+  );
   const [path, setPath] = useState("");
 
   const location = {
@@ -26,16 +28,6 @@ function App() {
   function pathHandler(pathState) {
     setPath(pathState);
   }
-
-  // function logout() {
-  //   fetch(`http://localhost:3000/logout`, {
-  //     method: "DELETE",
-  //     credentials: "include",
-  //   })
-  //     .then((res) => res.json())
-  //     .catch((err) => console.log(err));
-  //   setLoggedIn(false);
-  // }
 
   return (
     <Container>
@@ -49,19 +41,13 @@ function App() {
       </Router>
       {loggedIn ? (
         <Router>
-          {/* <div>
-            <button onClick={logout}>logout</button>
-          </div> */}
-
           <Switch>
             <Route path="/home/feed">
               <Columns logIn={setLoggedIn} />
             </Route>
           </Switch>
         </Router>
-      ) : (
-        "no work"
-      )}
+      ) : null}
       {/* <Map location={location} zoomLevel={10} /> */}
     </Container>
   );

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { TextField } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
+import UserForm from "../containers/UserForm";
 
 export default function Login(props) {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("asdf");
+  const [error, setError] = useState("");
 
   const setFetch = () => {
     event.preventDefault();
@@ -33,13 +34,23 @@ export default function Login(props) {
         props.login(true);
         sessionStorage.setItem("loggedIn", "true");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError(err.statusText);
+        setTimeout(() => setError(""), 5000);
+        return;
+      });
   };
 
   return (
     <div>
       <form onSubmit={() => setFetch()}>
-        {error ? <Alert>Generic</Alert> : null}
+        {error ? (
+          <Alert severity="error">
+            {" "}
+            Sorry, something went wrong: <br />
+            {error}
+          </Alert>
+        ) : null}
         <TextField
           type="text"
           placeholder="username"
@@ -56,6 +67,8 @@ export default function Login(props) {
         &nbsp;
         <TextField type="submit" />
       </form>
+
+      <UserForm />
     </div>
   );
 }
