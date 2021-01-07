@@ -47,6 +47,7 @@ export default function PostLayout(props) {
   const [liked, setLiked] = React.useState(
     props.likes.find((like) => like.user_id === 41) ? "red" : null
   );
+  const [numLikes, setNumLikes] = React.useState(props.likes.length);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -79,7 +80,13 @@ export default function PostLayout(props) {
     })
       .then((res) => res.json())
       .then((json) => {
-        if (!json.id) setLiked(null);
+        console.log(json);
+        if (!json.id) {
+          setLiked(null);
+          setNumLikes(props.likes.length);
+          return;
+        }
+        setNumLikes(numLikes + 1);
       });
   }
 
@@ -113,6 +120,8 @@ export default function PostLayout(props) {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites" onClick={likePostHandler}>
           <FavoriteIcon style={{ color: liked }} />
+          &nbsp;
+          {/* {numLikes} */}
         </IconButton>
         <IconButton aria-label="share">
           <ShareMenu postId={props.postId} />

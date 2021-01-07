@@ -35,6 +35,7 @@ function App() {
   return (
     <Container>
       <h1 className="logo">Litterally</h1>
+      <h1 style={{ opacity: 0 }}>Litterally</h1>
       <Router>
         {loggedIn ? (
           <Redirect to="/home" />
