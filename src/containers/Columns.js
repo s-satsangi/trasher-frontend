@@ -20,24 +20,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Columns(props) {
   const classes = useStyles();
-  const [joke, setJoke] = useState("");
-
-  // useEffect(() => {
-  //   fetch("https://dad-jokes.p.rapidapi.com/random/joke", {
-  //     method: "GET",
-  //     headers: {
-  //       "x-rapidapi-key": "353b214e47mshb3d5a6a72a53090p187493jsnd3fe2d693d63",
-  //       "x-rapidapi-host": "dad-jokes.p.rapidapi.com",
-  //     },
-  //   })
-  //     .then((resp) => resp.json())
-  //     .catch((err) => console.log(err))
-  //     .then((pun) => setJoke(pun));
-  // }, []);
 
   useEffect(() => props.history.push("/home/feed"), []);
-
-  let { path, url } = useRouteMatch();
 
   return (
     <div className={classes.root}>
@@ -62,9 +46,7 @@ function Columns(props) {
             </Grid>
           </Grid>
           <Grid item xs={2}>
-            <div className="menu">
-              {/* <Paper className={classes.paper}>{joke}</Paper> */}
-            </div>
+            <div className="menu"></div>
           </Grid>
         </Grid>
       </Grid>

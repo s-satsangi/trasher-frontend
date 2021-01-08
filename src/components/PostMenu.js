@@ -43,12 +43,12 @@ export default function SimpleMenu(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {props.user === 41 ? (
+        {props.user === +window.sessionStorage.getItem("user_id") ? (
           <MenuItem onClick={handleEdit}>Edit</MenuItem>
         ) : (
           <MenuItem>Message {props.user}</MenuItem>
         )}
-        {props.user === 41 ? (
+        {props.user === +window.sessionStorage.getItem("user_id") ? (
           <MenuItem onClick={handleClose}>Delete</MenuItem>
         ) : null}
         <CopyToClipboard text={`localhost:3000/posts/${props.postId}`}>

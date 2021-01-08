@@ -30,7 +30,7 @@ export default class UserForm extends Component {
       .then((res) => res.json())
       .then((json) => {
         if (json.status) throw json;
-        alert("change to redirect later");
+        this.props.login(true);
       })
       .catch((err) => alert(`${err.message}`));
     event.target.reset();

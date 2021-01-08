@@ -34,12 +34,10 @@ export default function Login(props) {
         props.login(true);
         props.setUsername(user.user);
         props.setUserId(user.uid);
-        return;
       })
       .catch((err) => {
         setError(err.statusText);
-        // setTimeout(() => setError(""), 5000);
-        return;
+        setTimeout(() => setError(""), 5000);
       });
   };
 
@@ -70,7 +68,7 @@ export default function Login(props) {
         <TextField type="submit" />
       </form>
       <br />
-      <UserForm />
+      <UserForm login={props.login} />
     </div>
   );
 }
