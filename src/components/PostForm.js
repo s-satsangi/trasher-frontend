@@ -8,7 +8,7 @@ export default class PostForm extends Component {
     text: "",
     image: null,
     location: "",
-    redirect: null,
+    redirect: false,
   };
 
   createPost = (event) => {
@@ -28,14 +28,15 @@ export default class PostForm extends Component {
     })
       .then((res) => res.json())
       .then((json) => {
-        if (json.status) throw json;
-        alert(json.status);
+        // if (json.status) throw json;
+        // alert(json.status);
+        console.log("success", json);
+        this.setState({
+          redirect: true,
+        });
       })
       .catch((err) => alert(`${err.message}`));
     event.target.reset();
-    this.setState({
-      redirect: <Redirect path="/home/feed" />,
-    });
   };
 
   inputHandler = (event, keyname) => {
@@ -48,7 +49,7 @@ export default class PostForm extends Component {
     //a post has a :text, :image, :location
     return (
       <Container>
-        {this.state.redirect}
+        {this.state.redirect ? <Redirect to="/home/feed" /> : null}
         <img src={this.state.image} />
         <form onSubmit={this.createPost}>
           <TextField
