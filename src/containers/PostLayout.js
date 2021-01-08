@@ -69,7 +69,7 @@ export default function PostLayout(props) {
   function likePostHandler() {
     setLiked("red");
     const data = {
-      user_id: 41,
+      user_id: +window.sessionStorage.getItem("user_id"),
       upvote_id: props.postId,
       upvote_type: "Post",
     };
@@ -80,7 +80,6 @@ export default function PostLayout(props) {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         if (!json.id) {
           setLiked(null);
           setNumLikes(props.likes.length);

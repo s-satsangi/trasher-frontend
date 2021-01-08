@@ -48,7 +48,7 @@ export default function PostsContainer(props) {
         if (json) console.log(json);
 
         postsRequest = json.map((post) => {
-          console.log(post.user.profile_picture);
+          console.log(post);
           return (
             <PostLayout
               likes={post.likes}
