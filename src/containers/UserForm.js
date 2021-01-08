@@ -9,6 +9,7 @@ export default class UserForm extends Component {
     password: "",
     passwordConfirm: "",
     submit: false,
+    picture: "",
   };
 
   createUser = (event) => {
@@ -19,6 +20,7 @@ export default class UserForm extends Component {
         last_name: this.state.lastname,
         username: this.state.username,
         password: this.state.password,
+        profile_picture: this.state.picture,
       },
     };
     fetch("http://localhost:3000/users", {
@@ -74,6 +76,14 @@ export default class UserForm extends Component {
             label="Username"
             className="userform"
             onChange={(event) => this.inputHandler(event, "username")}
+          />
+          <br />
+          <br />
+          <TextField
+            required
+            label="Profile Picture"
+            className="picture"
+            onChange={(event) => this.inputHandler(event, "picture")}
           />
           <br />
           <br />

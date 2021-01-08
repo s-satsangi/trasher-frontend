@@ -5,9 +5,7 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import DynamicFeedIcon from "@material-ui/icons/DynamicFeed";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -109,6 +107,14 @@ export default function SideMenu(props) {
               )}
             </ListItem>
           ))}
+          <ListItem>
+            <ListItemIcon>
+              <AccountBoxIcon />
+            </ListItemIcon>
+            <Link to="/home/updateprofile" className="sidemenu">
+              Update Profile
+            </Link>
+          </ListItem>
           <a
             href="https://github.com/jrshort89"
             target="_blank"

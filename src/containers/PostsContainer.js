@@ -48,6 +48,7 @@ export default function PostsContainer(props) {
         if (json) console.log(json);
 
         postsRequest = json.map((post) => {
+          console.log(post.user.profile_picture);
           return (
             <PostLayout
               likes={post.likes}
@@ -59,6 +60,7 @@ export default function PostsContainer(props) {
               location={post.locaiton}
               text={post.text}
               date={post.created_at}
+              profilePic={post.user.profile_picture}
             />
           );
         });

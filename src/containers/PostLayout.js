@@ -96,7 +96,12 @@ export default function PostLayout(props) {
         avatar={
           <Avatar
             alt="Remy Sharp"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwLxFg4DRi0YW-8Vl-foPkVYZDQrVkszRm8g&usqp=CAU"
+            src={
+              props.profilePic
+                ? props.profilePic
+                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwLxFg4DRi0YW-8Vl-foPkVYZDQrVkszRm8g&usqp=CAU"
+            }
+            // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwLxFg4DRi0YW-8Vl-foPkVYZDQrVkszRm8g&usqp=CAU"
           />
         }
         action={

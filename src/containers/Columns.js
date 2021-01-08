@@ -6,6 +6,7 @@ import SideMenu from "../components/SideMenu";
 import PostsContainer from "./PostsContainer";
 import PostForm from "../components/PostForm";
 import { Switch, Route, useRouteMatch, withRouter } from "react-router-dom";
+import UserForm from "./UserForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,9 @@ function Columns(props) {
                 </Route>
                 <Route path={"/home/newpost"}>
                   <PostForm />
+                </Route>
+                <Route path="/home/updateprofile">
+                  <UserForm />
                 </Route>
               </Switch>
             </Grid>
