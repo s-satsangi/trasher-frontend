@@ -1,3 +1,9 @@
+# Phase 4 Flatiron Coding Bootcamp Paired Project
+
+At this point, this is the prototype that will later be our fully imagined grand ideas.
+
+At the moment it looks like a generic social media website but with time we hope to make it its own unique entity.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
