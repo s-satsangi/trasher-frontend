@@ -10,9 +10,12 @@ import {
   Redirect,
 } from "react-router-dom";
 import Map from "./MapsApi/Map";
+import * as actionTypes from "./redux/actions";
+import { connect } from "react-redux";
 
-function App() {
+function App(props) {
   useEffect(() => {
+    props.onSetLogin(window.sessionStorage.getItem("username" ? true : false));
     setLoggedIn(window.sessionStorage.getItem("username") ? true : false);
   }, []);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -40,20 +43,20 @@ function App() {
       <Container>
         <h1 className="logo">Litterally</h1>
         <h1 style={{ opacity: 0 }}>Litterally</h1> {/* block of spacing */}
-        {loggedIn ? (
+        {props.loggedIn ? (
           <Redirect to="/home" />
         ) : (
           <Login
-            login={setLoggedIn}
+            login={props.onSetLogin}
             setUserId={setUserId}
             setUsername={sessionUsername}
             setUserId={sessionUserId}
           />
         )}
-        {loggedIn ? (
+        {props.loggedIn ? (
           <Switch>
             <Route path="/home">
-              <Columns logIn={setLoggedIn} />
+              <Columns logIn={props.onSetLogin} />
             </Route>
           </Switch>
         ) : null}
@@ -63,4 +66,16 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.login.loggedIn,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSetLogin: () => dispatch({ type: actionTypes.LOGGED_IN }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

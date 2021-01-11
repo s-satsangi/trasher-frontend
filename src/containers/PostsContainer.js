@@ -15,7 +15,6 @@ export default function PostsContainer(props) {
   const getPosts = () => {
     let postsRequest;
     const postsLength = posts ? posts.length : 0;
-    console.log("getting posts fetch call about ta start");
     fetch(
       `http://localhost:3000/posts/index/${postsLength}`,
       {
@@ -37,16 +36,11 @@ export default function PostsContainer(props) {
         return data.json();
       })
       .catch((err) => {
-        console.log(err);
         if (err) {
           throw `${err}`;
         }
       })
       .then((json) => {
-        console.log(json);
-
-        if (json) console.log(json);
-
         postsRequest = json.map((post) => {
           return (
             <PostLayout

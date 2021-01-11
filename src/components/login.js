@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { TextField } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import UserForm from "../containers/UserForm";
+import { connect } from "react-redux";
+import * as actionTypes from "../redux/actions";
 
-export default function Login(props) {
+function Login(props) {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const setFetch = () => {
     event.preventDefault();
-    console.log("setFetch");
     fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
@@ -34,6 +35,7 @@ export default function Login(props) {
         props.login(true);
         props.setUsername(user.user);
         props.setUserId(user.uid);
+        props.onSetUsername(user.user);
       })
       .catch((err) => {
         setError(err.statusText);
@@ -72,3 +74,20 @@ export default function Login(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    username: state.login.username,
+    loggedIn: state.login.loggedIn,
+    user_id: state.login.userId,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSetUsername: (username) =>
+      dispatch({ type: actionTypes.USERNAME, username: username }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
