@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 
 function App(props) {
   useEffect(() => {
-    props.onSetLogin(window.sessionStorage.getItem("username" ? true : false));
+    props.onSetLogin;
     setLoggedIn(window.sessionStorage.getItem("username") ? true : false);
   }, []);
   const [loggedIn, setLoggedIn] = useState(false);

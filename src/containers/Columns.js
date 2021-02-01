@@ -1,11 +1,10 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import SideMenu from "../components/SideMenu";
 import PostsContainer from "./PostsContainer";
 import PostForm from "../components/PostForm";
-import { Switch, Route, useRouteMatch, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import UserForm from "./UserForm";
 
 const useStyles = makeStyles((theme) => ({

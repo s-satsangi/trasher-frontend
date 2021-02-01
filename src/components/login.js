@@ -10,6 +10,18 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  function sessionUsername(username) {
+    setUsername(username);
+    props.setUsername(user.user);
+    window.sessionStorage.setItem("username", username);
+  }
+
+  function sessionUserId(id) {
+    setUserId(id);
+    props.setUserId(user.uid);
+    window.sessionStorage.setItem("user_id", id);
+  }
+
   const setFetch = () => {
     event.preventDefault();
     fetch("http://localhost:3000/login", {
@@ -33,9 +45,8 @@ function Login(props) {
       })
       .then((user) => {
         props.login(true);
-        props.setUsername(user.user);
-        props.setUserId(user.uid);
-        props.onSetUsername(user.user);
+        onSetUsername(user.user);
+        onSetUserId(user.uid);
       })
       .catch((err) => {
         setError(err.statusText);
@@ -87,6 +98,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSetUsername: (username) =>
       dispatch({ type: actionTypes.USERNAME, username: username }),
+    onSetUserId: (id) => dispath({ type: actionTypes.USER_ID, userId: id }),
   };
 };
 
