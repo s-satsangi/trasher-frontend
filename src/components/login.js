@@ -24,7 +24,7 @@ function Login(props) {
 
   const setFetch = () => {
     event.preventDefault();
-    fetch("http://localhost:3000/login", {
+    fetch("https://litterally.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

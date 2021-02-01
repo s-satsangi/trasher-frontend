@@ -20,7 +20,7 @@ export default class PostForm extends Component {
         location: this.state.location,
       },
     };
-    fetch("http://localhost:3000/posts", {
+    fetch("https://litterally.herokuapp.com/posts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
