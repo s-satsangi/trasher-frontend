@@ -29,9 +29,9 @@ function Login(props) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "Access-Control-Allow-Credentials": "true",
       },
-      "Access-Control-Allow-Credentials": "true",
-      credentials: "include",
+      credentials: true,
       body: JSON.stringify({
         user: {
           username,
