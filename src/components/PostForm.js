@@ -22,7 +22,10 @@ export default class PostForm extends Component {
     };
     fetch("https://litterally.herokuapp.com/posts", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "true",
+      },
       body: JSON.stringify(data),
       credentials: "include",
     })
