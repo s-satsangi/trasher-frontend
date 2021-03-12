@@ -24,6 +24,7 @@ function Login(props) {
 
   const setFetch = () => {
     event.preventDefault();
+    console.log("Yooo");
     fetch("https://scrapparts.herokuapp.com/login", {
       method: "POST",
       headers: {
@@ -31,6 +32,7 @@ function Login(props) {
         Accept: "application/json",
         "Access-Control-Allow-Credentials": true,
       },
+      "Access-Control-Allow-Credentials": true,
       credentials: "include",
       body: JSON.stringify({
         user: {
