@@ -45,7 +45,7 @@ export default function SideMenu(props) {
   const classes = useStyles();
 
   function logout() {
-    fetch(`https://litterally.herokuapp.com/logout`, {
+    fetch(`https://scrapparts.herokuapp.com/logout`, {
       method: "DELETE",
       credentials: "include",
     })

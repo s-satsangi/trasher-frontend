@@ -34,7 +34,7 @@ export default class Comments extends Component {
       post_id: this.props.postId,
       text: event.target.text.value,
     };
-    fetch("https://litterally.herokuapp.com/comments", {
+    fetch("https://scrapparts.herokuapp.com/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

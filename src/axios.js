@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://litterally.herokuapp.com/",
+  baseURL: "https://scrapparts.herokuapp.com/",
   // withCredentials: true
 });
 

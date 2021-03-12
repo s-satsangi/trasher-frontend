@@ -73,7 +73,7 @@ export default function PostLayout(props) {
       upvote_id: props.postId,
       upvote_type: "Post",
     };
-    fetch(`https://litterally.herokuapp.com/likes`, {
+    fetch(`https://scrapparts.herokuapp.com/likes`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

@@ -16,7 +16,7 @@ export default function PostsContainer(props) {
     let postsRequest;
     const postsLength = posts ? posts.length : 0;
     fetch(
-      `https://litterally.herokuapp.com/posts/index/${postsLength}`,
+      `https://scrapparts.herokuapp.com/posts/index/${postsLength}`,
       {
         credentials: "include",
         // headers: {

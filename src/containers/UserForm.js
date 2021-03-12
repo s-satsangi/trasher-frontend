@@ -23,7 +23,7 @@ export default class UserForm extends Component {
         profile_picture: this.state.picture,
       },
     };
-    fetch("https://litterally.herokuapp.com/users", {
+    fetch("https://scrapparts.herokuapp.com/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
